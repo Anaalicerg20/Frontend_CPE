@@ -1,0 +1,27 @@
+.div-teste{
+    border:solid;
+    height: 40px;
+    width: 200px;
+    //espaço entre a div e o restante da pagina web 
+    margin-bottom: 20px;
+    //espaço enyre aquilo que esta dentro da div e a div
+    padding-left: 10px; 
+    padding-top: 10px;
+
+}
+
+.div-botao{
+    display: flex
+    justify-content: center;
+    margin_top: 50px
+}
+
+.botao-teste{
+    width: 250px;
+    height: 80px; 
+    border: solid;
+    border-radius: 15px;
+    background-color:bisque;
+    color:brown
+    font-size: 20px; 
+}
