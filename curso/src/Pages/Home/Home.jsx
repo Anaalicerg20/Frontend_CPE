@@ -8,7 +8,7 @@ function Home(){
         <div>
             Essa é a página Home
             <BotaoPadrao
-            onClick={() => navigate("/login")}>
+            onClick={() => navigate("/cadastro")}>
             </BotaoPadrao>
         </div>
     )

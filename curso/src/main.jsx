@@ -9,5 +9,5 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Routes />
     <GlobalStyles />
-  </StrictMode>,
+  </StrictMode>
 )
