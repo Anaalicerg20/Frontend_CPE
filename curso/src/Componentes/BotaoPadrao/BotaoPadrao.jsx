@@ -4,10 +4,9 @@ function BotaoPadrao(props){
 
     return(
         <div>
-        <StyleBotaoPadrao onClick={props.onClick}>
-            Redirecionar
-        </StyleBotaoPadrao>
-    </div>
+            <StyleBotaoPadrao onClick={props.onClick}>
+            </StyleBotaoPadrao>
+        </div>
     )
 }
 

@@ -3,8 +3,9 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
 
 *{
-height: 100vh;
-width: 100%;
+margin: 0;
+padding: 0; 
+box-sizing: border-box;
 background-color: black;
 color: white;
 }

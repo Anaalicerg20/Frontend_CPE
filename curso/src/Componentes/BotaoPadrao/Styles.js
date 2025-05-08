@@ -13,7 +13,7 @@ display: inline-block;
     cursor: pointer;
     transition: background-color 0.3s ease;
 
-    &:haver{
+    &:hover{
         background-color: #303f9f;
     }
 `;
