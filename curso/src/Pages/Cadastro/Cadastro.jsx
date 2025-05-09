@@ -5,6 +5,8 @@ import { Header} from "./Styles";
 import { Title } from "./Styles";
 import { Formulario } from "./Styles";
 import { Input } from "./Styles";
+import { Redirecionamento } from "./Styles";
+import { BotaoRedirecionar } from "./Styles";
 import { StyleBotaoCadastro } from "./Styles";
 
 function Cadastro(){
@@ -19,7 +21,7 @@ function Cadastro(){
                 <Input type="text" name="cargo" placeholder="Cargo" />
                 <Input type="password" name="senha" placeholder="Senha" />
                 <Input type="password" name="repetirSenha" placeholder="Repetir senha"/>
-                
+                <Redirecionamento> Já tem uma conta? Faça seu login <BotaoRedirecionar  onClick={() => navigate("/login")}> aqui </BotaoRedirecionar></Redirecionamento>
                 <StyleBotaoCadastro type="submit"> CRIAR CONTA </StyleBotaoCadastro>
 
             </Formulario>

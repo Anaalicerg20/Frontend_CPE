@@ -33,6 +33,22 @@ border-radius: 4px;
 font-size: 1rem;
 background-color: white;
 border-radius: 20px;
+color: black; 
+`;
+
+export const Redirecionamento = styled.h2`
+font-size: 14px;
+color: white; 
+text-align: center; 
+font-style: italic;
+margin-bottom: 40px;
+`;
+
+export const BotaoRedirecionar = styled.button`
+border: none; 
+color: red; 
+cursor: pointer;
+transition: background-color 0.3s ease;
 `;
 
 export const StyleBotaoLogin = styled.button`
