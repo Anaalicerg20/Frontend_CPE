@@ -11,9 +11,14 @@
   },
   "dependencies": {
     "antd": "^5.24.9",
+    "framer-motion": "^12.10.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "styled-components": "^6.1.17"
+    "react-icons": "^5.5.0",
+    "styled-components": "^6.1.17",
+    "swiper": "^11.2.6",
+    "zod": "^3.24.4",
+    "zod-express-middleware": "^1.4.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",

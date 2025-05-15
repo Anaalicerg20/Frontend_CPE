@@ -37,7 +37,7 @@ color: black;
 `;
 
 export const Redirecionamento = styled.h2`
-font-size: 14px;
+font-size: 16px;
 color: white; 
 text-align: center; 
 font-style: italic;
@@ -48,7 +48,22 @@ export const BotaoRedirecionar = styled.button`
 border: none; 
 color: red; 
 cursor: pointer;
-transition: background-color 0.3s ease;
+position: relative;
+
+&::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
 `;
 
 export const StyleBotaoCadastro = styled.button`
