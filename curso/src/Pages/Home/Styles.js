@@ -1,5 +1,5 @@
-import { styled } from "styled-components";
 import { Link } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
 
 export const HeaderContainer = styled.header`
 color: black;
@@ -58,18 +58,27 @@ export const Title = styled.h2`
 export const CarrosselContainer = styled.div`
   text-align: center;
   color:yellow;
-  width: 80%;
-  height: 80vh;
-  border: 1px solid yellow;
-  margin: 20px auto;
+  width: 60%;
+  height: 60vh;
+  margin: 30px auto;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
+export const forwardImageAnimation = keyframes`
+0%{
+  transform: translateX(-100px),
+}
+100%{
+  transform: translateX(0px),
+}
+`;
+
 export const ImageContainer = styled.div`
-  width: 70%;
-  height: 70%;
+  width: 100%;
+  height: 100%;
+  animation: ${forwardImageAnimation} 2s ease;
 `;
 
 export const StyledImage = styled.img`
@@ -89,5 +98,4 @@ export const StyledArrowContainer = styled.div`
       background-color: #fdfae8;
       border-radius: 50%;
   }
-
 `;
