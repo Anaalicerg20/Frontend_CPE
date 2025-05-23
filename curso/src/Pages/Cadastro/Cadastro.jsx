@@ -10,7 +10,7 @@ import { BotaoRedirecionar } from "./Styles";
 import { StyleBotaoCadastro } from "./Styles";
 
 import { useForm } from "react-hook-form";
-import { useCreateUsuario } from "../../hooks/usuario";
+import {useCreateUsuario } from "../../hooks/usuario";
 
 function Cadastro(){
 
@@ -23,9 +23,10 @@ function Cadastro(){
 
     const { mutate: postUsuario, inPending, } = useCreateUsuario({});
 
+
     //onSubmit
     function response(data){
-        console.log("cheguei na funcao")
+
         postUsuario(data);
         console.log(data);
     }
@@ -35,7 +36,8 @@ function Cadastro(){
         <div>
             <Header> cpe </Header>
             <Title>CADASTRO</Title>
-            <Formulario onSubmit={handleSubmit(response)}>
+            <Formulario 
+            onSubmit={handleSubmit(response)}>
                 <Input {...register("nome")} type="text" name="nome" placeholder="Nome" />
                 <Input {...register ("email")}type="email" name="email" placeholder="Email" />
                 <Input {...register("cargo")}type="text" name="cargo" placeholder="Cargo" />
