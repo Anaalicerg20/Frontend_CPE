@@ -22,8 +22,9 @@ const router = createBrowserRouter(
                 <Route path="cadastro" element={<Cadastro/>}/>
                  <Route index element={
                     <PrivateRoute>
-                        <Home/>
+                        <Home />
                     </PrivateRoute>
+
                 } />
 
                 <Route path="perfil" element={

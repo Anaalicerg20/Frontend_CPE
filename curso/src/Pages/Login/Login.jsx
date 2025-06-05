@@ -11,8 +11,11 @@ import { StyleBotaoLogin } from "./Styles";
 import { useForm } from "react-hook-form";
 
 import { useLoginUsuario } from "../../hooks/usuario";
+import useAuthStores from "../../stores/auth";
 
 function Login(){
+
+    const setToken = useAuthStores((state) => state.setToken);
 
  //hooks 
     const {
@@ -24,8 +27,14 @@ function Login(){
     const navigate = useNavigate();
 
 const { mutate: loginUsuario, isPending } = useLoginUsuario({
+
     onSuccess: (data) => {
+     //   console.log("Token JWT recebido:", data.token);
+       // const usuarioDecodificado = jwtDecode(data.token);
+       // console.log("Usuário decodificado:", usuarioDecodificado);
+
     localStorage.setItem("token", data.token); // salva o token
+   // setToken(data.token);
      navigate("/"); // redireciona para rota protegida (ajuste se necessário)
     },
     onError: (error) => {

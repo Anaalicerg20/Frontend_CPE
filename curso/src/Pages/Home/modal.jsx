@@ -13,11 +13,11 @@ import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 
-function Modal({isOpen, children, setOpenModal}) {
+function Modal({isOpen, children, setOpenModal, usuarios = [] }) {
 
     const navigate = useNavigate();
-
     const queryClient = useQueryClient();
+
     //formulario inicia escondido
     const [mostrarFormulario, setMostrarFormulario] = useState(false);
 
@@ -30,7 +30,7 @@ function Modal({isOpen, children, setOpenModal}) {
     
     const { mutate: postSessao, isPending, } = useCreateSessao({
         onSuccess: () => { 
-            toast.success("Usuario cadastrado com sucesso");
+            toast.success("Sessao criada com sucesso");
             queryClient.invalidateQueries({
             queryKey: ["sessoes"]
         })
@@ -45,7 +45,17 @@ function Modal({isOpen, children, setOpenModal}) {
     
     //onSubmit
     const onSubmit = (data) => {
-    postSessao(data);
+        const usuario = usuarios.find(
+         (u) => u.nome.toLowerCase() === data.membro.toLowerCase()
+        );
+
+    if (!usuario) {
+      toast.error("Usuário não encontrado");
+      return;
+    }
+
+    // Envia apenas o id_usuario para o backend
+    postSessao({ id_usuario: usuario._id });
   };
     
     if(!isOpen) return null;
@@ -65,12 +75,6 @@ function Modal({isOpen, children, setOpenModal}) {
                          <Formulario onSubmit={handleSubmit(onSubmit)}>
                             <Input {...register("membro", { required: true })} placeholder="Membro"/>
                                 {errors.membro && <p>Membro é obrigatório.</p>}
-
-                            <Input {...register("chegada", { required: true })} type="datetime-local"/>
-                                {errors.chegada && <p>Data/hora de chegada obrigatória.</p>}
-
-                            <Input {...register("tempoInformacao", { required: true })} placeholder="00:10:00" />
-                                 {errors.tempoInformacao && <p>Tempo de informação obrigatório.</p>}
 
                             <BotaoDoModal type="submit" disabled={isPending}> {isPending ? "Enviando..." : "Criar Sessão"} </BotaoDoModal>
 

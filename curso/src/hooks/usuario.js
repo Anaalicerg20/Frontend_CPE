@@ -9,7 +9,6 @@ export function useGetUsuarios({ onSuccess = () => {}, onError = () => {}, } = {
         onError, 
     });  
 }
-
 export function useCreateUsuario({ onSuccess = () => {}, onError = () => {}, } = {} ) {
     return useMutation({ mutationFn: CreateUsuario, onSuccess, onError }); 
 }

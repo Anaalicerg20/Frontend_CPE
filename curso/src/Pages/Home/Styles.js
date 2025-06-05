@@ -186,7 +186,7 @@ export const Fechar = styled.button`
 `;
 
 export const Formulario = styled.form`
-display: flex;
+display: flex; 
 flex-direction: column;
 padding-inline: 400px;
 color: yellow;

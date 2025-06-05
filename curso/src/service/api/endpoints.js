@@ -34,9 +34,7 @@ export async function LoginUsuario(dados) {
 //sessoes
 
 export async function GetSessoes() {
-  console.log("oi")
   const { data } = await api.get(`/sessoes`);
-  console.log("tchau")
   return data;
 }
 

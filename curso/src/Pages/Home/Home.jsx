@@ -2,16 +2,7 @@ import BotaoPadrao from "../../Componentes/BotaoPadrao/BotaoPadrao";
 import { useNavigate } from "react-router-dom";
 
 
-import { HeaderContainer } from "./Styles";
-import { Header} from "./Styles";
-import { NavItem } from "./Styles";
-import { CarrosselContainer } from "./Styles";
-import { StyledImage } from "./Styles";
-import { StyledArrowContainer } from "./Styles";
-import { ImageContainer } from "./Styles";
-import { TableContainer } from "./Styles";
-import { BotaoModal } from "./Styles";
-
+import { HeaderContainer, Header, NavItem, CarrosselContainer, StyledImage, StyledArrowContainer, ImageContainer, TableContainer, BotaoModal } from "./Styles";
 import { forwardImageAnimation } from "./Styles";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
@@ -35,6 +26,8 @@ import { BotaoDoModal } from './Styles';
 //TABELA SESSOES
 import { Button, Table } from "antd";
 import { useGetSessoes } from "../../hooks/sessoes";
+import { useGetUsuarios } from "../../hooks/usuario";
+import { useQueryClient } from '@tanstack/react-query';
 
 
 //CARROSSEL
@@ -44,10 +37,10 @@ function Home(){
  
 //GET TABELA
 const { data: sessoes1, isLoading } = useGetSessoes({});
-console.log(sessoes1);
-
+const { data: usuarios } = useGetUsuarios({});
 
 const navigate = useNavigate();
+const queryClient = useQueryClient();
 
 //CARROSSEL
     const[currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -59,6 +52,28 @@ const navigate = useNavigate();
     const preImage = () => {
         setCurrentImageIndex(prevIndex => (prevIndex - 1 + images.length) % images.length);
     }
+
+// Função para calcular o tempo desde o login
+  function calcularTempo(createdAt) {
+    if (!createdAt) return "";
+    const agora = new Date();
+    const inicio = new Date(createdAt);
+    const diffMs = agora - inicio;
+    const diffMin = Math.floor(diffMs / 60000);
+    const horas = Math.floor(diffMin / 60);
+    const minutos = diffMin % 60;
+    return `${horas}h ${minutos}min`;
+  }
+
+  // Atualizar a tabela a cada minuto para atualizar o tempo logado
+  useEffect(() => {
+    const interval = setInterval(() => {
+      queryClient.invalidateQueries({ queryKey: ['sessoes'] });
+    }, 60000); // 60 segundos
+
+    return () => clearInterval(interval);
+  }, [queryClient]);
+
 
 const columns = [
   {
@@ -81,6 +96,7 @@ const columns = [
 //modal
 const [ openModal, setOpenModal ] = useState(false);
 
+console.log(sessoes1);
 //tela
     return (
         <div>
@@ -107,19 +123,19 @@ const [ openModal, setOpenModal ] = useState(false);
 
             <TableContainer>
               <BotaoModal onClick={() => setOpenModal(true) }> Fazer Login </BotaoModal>
-              <Modal isOpen={ openModal } setOpenModal={setOpenModal}></Modal>
-              <Table dataSource={sessoes1} columns={columns} />
-              {isLoading ? (
-              <p>carregando</p>
-              ) : (
-              sessoes1?.map((sessao) => (
-                <div key={sessao?.id}>
-                  {sessao?.timestamps}
-                </div>
-                ))
-              )}
-            
-            </TableContainer>
+             <Modal isOpen={openModal} setOpenModal={setOpenModal} usuarios={usuarios} />
+              
+              <Table
+              dataSource={sessoes1?.map((s) => ({
+              key: s._id || s.id,
+              membro: s.id_usuario?.nome || "Desconhecido",
+              chegada: new Date(s.createdAt).toLocaleString("pt-BR"),
+              tempo: calcularTempo(s.createdAt),
+              }))}
+              columns={columns}
+              loading={isLoading}
+              />
+      </TableContainer>
             
             <BotaoPadrao
             onClick={() => navigate("/cadastro")}>
