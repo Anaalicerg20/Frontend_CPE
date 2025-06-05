@@ -67,7 +67,8 @@ position: relative;
 `;
 
 export const StyleBotaoLogin = styled.button`
-display: inline-block;
+  display: block;           
+  margin: 0 auto 100px auto;
   padding: 12px 24px;
   text-align: center;
   font-size: 20px;

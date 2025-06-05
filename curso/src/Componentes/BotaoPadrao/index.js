@@ -1,1 +1,1 @@
-export (default) from "./BotaoPadrao"
+export { default } from "./BotaoPadrao";

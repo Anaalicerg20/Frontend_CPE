@@ -1,5 +1,5 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { GetUsuarios, CreateUsuario, UpdateUsuario, DeleteUsuario } from "../service/api/endpoints";
+import { GetUsuarios, LoginUsuario, CreateUsuario, UpdateUsuario, DeleteUsuario } from "../service/api/endpoints";
 
 export function useGetUsuarios({ onSuccess = () => {}, onError = () => {}, } = {} ){
    return useQuery({ 
@@ -20,4 +20,8 @@ export function useUpdateUsuario({ onSuccess = () => {}, onError = () => {}, } =
 
 export function useDeleteUsuario({ onSuccess = () => {}, onError = () => {}, } = {} ) {
     return useMutation({ mutationFn: DeleteUsuario, onSuccess, onError }); 
+}
+
+export function useLoginUsuario({ onSuccess = () => {}, onError = () => {} } = {}) {
+    return useMutation({ mutationFn: LoginUsuario, onSuccess, onError });
 }

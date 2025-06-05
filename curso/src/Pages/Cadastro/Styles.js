@@ -22,12 +22,13 @@ export const Formulario = styled.form`
 display: flex;
 flex-direction: column;
 padding-inline: 400px;
-
+color: yellow;
+font-size: 16px;
 `;
 
 export const Input = styled.input`
 padding: 0.5rem;
-margin-bottom: 3rem;
+margin: 1rem;
 border: 1px solid #aaa;
 border-radius: 4px;
 font-size: 1rem;
@@ -41,7 +42,7 @@ font-size: 16px;
 color: white; 
 text-align: center; 
 font-style: italic;
-margin-bottom: 40px;
+margin: 40px;
 `;
 
 export const BotaoRedirecionar = styled.button`
@@ -67,7 +68,8 @@ position: relative;
 `;
 
 export const StyleBotaoCadastro = styled.button`
-display: inline-block;
+  display: block;           
+  margin: 0 auto 100px auto;
   padding: 12px 24px;
   text-align: center;
   font-size: 20px;

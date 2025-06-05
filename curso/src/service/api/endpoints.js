@@ -24,3 +24,30 @@ export async function DeleteUsuario(){
     console.log(data);
     return data;
 }
+
+export async function LoginUsuario(dados) {
+    const { data } = await api.post('/login', dados);
+    console.log(dados);
+    return data;
+}
+
+//sessoes
+
+export async function GetSessoes() {
+  console.log("oi")
+  const { data } = await api.get(`/sessoes`);
+  console.log("tchau")
+  return data;
+}
+
+export async function CreateSessao(body) {
+  const { data } = await api.post(`/sessoes`, body);
+  console.log(data);
+  return data;
+}
+
+export async function DeleteSessao(id) {
+  const { data } = await api.delete(`/sessoes/${id}`);
+  console.log(data);
+  return data;
+}
