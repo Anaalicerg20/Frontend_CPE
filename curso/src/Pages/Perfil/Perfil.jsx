@@ -3,9 +3,11 @@ import { HeaderContainer } from './Styles.js';
 import { Header } from './Styles.js';
 import { NavItem } from './Styles.js';
 import { useNavigate } from "react-router-dom";
-import BotaoLogout from '../../Componentes/BotaoLogout.jsx';
 import { Container, Dados, Dado, Nome, Valor } from './Styles.js';
+
+import BotaoLogout from '../../Componentes/BotaoLogout.jsx'
 import useAuthStores from "../../stores/auth.js"
+
 
 function Perfil() {
 

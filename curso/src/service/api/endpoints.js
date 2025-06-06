@@ -28,7 +28,6 @@ export async function DeleteUsuario(){
 export async function LoginUsuario(dados) {
     const { data } = await api.post('/login', dados);
     console.log(dados);
-    console.log("sai do Login");
     return data;
 }
 
