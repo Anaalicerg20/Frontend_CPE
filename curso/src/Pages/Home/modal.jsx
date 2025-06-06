@@ -43,7 +43,7 @@ function Modal({ isOpen, children, setOpenModal, usuarios = [] }) {
 
   const token = localStorage.getItem("token");
 
-  //onSubmit //mudei
+  //onSubmit 
   const onSubmit = (data) => {
     if (!token) {
       toast.error("Token de autenticação não encontrado");
