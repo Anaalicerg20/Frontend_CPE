@@ -36,7 +36,7 @@ const images = [first, second, third, forth, fifth, sixth, seventh, eighth];
 function Home(){
  
 //GET TABELA
-const { data: sessoes1, isLoading } = useGetSessoes({});
+const { data: sessoes, isLoading } = useGetSessoes({});
 const { data: usuarios } = useGetUsuarios({});
 
 const navigate = useNavigate();
@@ -68,7 +68,7 @@ const queryClient = useQueryClient();
   // Atualizar a tabela a cada minuto para atualizar o tempo logado
   useEffect(() => {
     const interval = setInterval(() => {
-      queryClient.invalidateQueries({ queryKey: ['sessoes'] });
+      queryClient.invalidateQueries({ queryKey: ["sessoes"] });
     }, 60000); // 60 segundos
 
     return () => clearInterval(interval);
@@ -95,8 +95,8 @@ const columns = [
 
 //modal
 const [ openModal, setOpenModal ] = useState(false);
+console.log("Sessoes:", sessoes);
 
-console.log(sessoes1);
 //tela
     return (
         <div>
@@ -122,12 +122,15 @@ console.log(sessoes1);
             </CarrosselContainer>
 
             <TableContainer>
-              <BotaoModal onClick={() => setOpenModal(true) }> Fazer Login </BotaoModal>
+               <BotaoModal onClick={() => setOpenModal(true)}>
+                 {" "}
+                  Fazer Login{" "}
+                </BotaoModal>
              <Modal isOpen={openModal} setOpenModal={setOpenModal} usuarios={usuarios} />
-              
+              ;
               <Table
-              dataSource={sessoes1?.map((s) => ({
-              key: s._id || s.id,
+              dataSource={sessoes?.map((s) => ({
+              key: s._id, 
               membro: s.id_usuario?.nome || "Desconhecido",
               chegada: new Date(s.createdAt).toLocaleString("pt-BR"),
               tempo: calcularTempo(s.createdAt),

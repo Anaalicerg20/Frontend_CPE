@@ -1,17 +1,16 @@
 import React from 'react';
-import { HeaderContainer } from './Styles';
-import { Header } from './Styles';
-import { NavItem } from './Styles';
+import { HeaderContainer } from './Styles.js';
+import { Header } from './Styles.js';
+import { NavItem } from './Styles.js';
 import { useNavigate } from "react-router-dom";
-import BotaoLogout from '../../../Componentes/BotaoLogout.jsx';
-import { Container, Dados, Dado, Nome, Valor } from './Styles';
-import Usuarios from '../Usuarios /Usuarios.jsx';
-import useAuthStores from "../../../stores/auth.js"
+import BotaoLogout from '../../Componentes/BotaoLogout.jsx';
+import { Container, Dados, Dado, Nome, Valor } from './Styles.js';
+import useAuthStores from "../../stores/auth.js"
 
 function Perfil() {
 
  const usuario = useAuthStores((state) => state.usuario); 
-
+  console.log(usuario)
   return (
     <>
     <HeaderContainer>
@@ -31,9 +30,6 @@ function Perfil() {
         </Dado>
         <Dado> 
           Cargo: <Valor>{usuario?.cargo} </Valor>
-        </Dado>
-        <Dado> 
-          Status: <Valor>{usuario?.status} </Valor>
         </Dado>
       </Dados>
     </Container>

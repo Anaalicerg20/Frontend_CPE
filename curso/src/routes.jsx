@@ -8,8 +8,8 @@ import{
 import Home from "./Pages/Home/Home"
 import Cadastro from "./Pages/Cadastro/Cadastro"
 import Login from "./Pages/Login/Login"
-import Perfil from "./Pages/Home/Perfil";
-import Usuarios from "./Pages/Home/Usuarios ";
+import Perfil from "./Pages/Perfil/Perfil";
+import Usuarios from "./Pages/Usuarios/Usuarios"
 import PrivateRoute from "./PrivateRoute";
 
 import { AppLayout } from "./layouts";

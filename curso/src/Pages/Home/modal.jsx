@@ -42,12 +42,19 @@ function Modal({isOpen, children, setOpenModal, usuarios = [] }) {
                alert(error?.response?.data?.message || "Erro ao criar a sessao"); 
             },
         });
-    
+
+    const token = localStorage.getItem("token");
+
     //onSubmit
-    const onSubmit = (data) => {
-        const usuario = usuarios.find(
-         (u) => u.nome.toLowerCase() === data.membro.toLowerCase()
-        );
+const onSubmit = (data) => {
+    if (!token) {
+      toast.error("Token de autenticação não encontrado");
+      return;
+    }
+
+    const usuario = usuarios.find(
+      (u) => u.nome.toLowerCase() === data.membro.toLowerCase()
+    );
 
     if (!usuario) {
       toast.error("Usuário não encontrado");
@@ -55,8 +62,18 @@ function Modal({isOpen, children, setOpenModal, usuarios = [] }) {
     }
 
     // Envia apenas o id_usuario para o backend
-    postSessao({ id_usuario: usuario._id });
+    postSessao(
+      {
+        id_usuario: usuario._id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
   };
+
     
     if(!isOpen) return null;
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Header } from './Styles';
-import { HeaderContainer } from './Styles';
-import { NavItem } from './Styles';
+import { Header } from './Styles.js';
+import { HeaderContainer } from './Styles.js';
+import { NavItem } from './Styles.js';
 
-import BotaoLogout from '../../../Componentes/BotaoLogout.jsx';
+import BotaoLogout from '../../Componentes/BotaoLogout.jsx';
 function Usuarios() {
   return (
    <HeaderContainer>

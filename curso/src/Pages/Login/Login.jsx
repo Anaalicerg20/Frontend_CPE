@@ -12,10 +12,12 @@ import { useForm } from "react-hook-form";
 
 import { useLoginUsuario } from "../../hooks/usuario";
 import useAuthStores from "../../stores/auth";
+import { jwtDecode } from "jwt-decode";
 
 function Login(){
 
-    const setToken = useAuthStores((state) => state.setToken);
+    const setUsuario = useAuthStores((state) => state?.setUsuario);
+    const setToken = useAuthStores((state) => state?.setToken);
 
  //hooks 
     const {
@@ -26,24 +28,19 @@ function Login(){
 
     const navigate = useNavigate();
 
-const { mutate: loginUsuario, isPending } = useLoginUsuario({
-
+      const { mutate: loginUsuario, isPending } = useLoginUsuario({
     onSuccess: (data) => {
-     //   console.log("Token JWT recebido:", data.token);
-       // const usuarioDecodificado = jwtDecode(data.token);
-       // console.log("Usuário decodificado:", usuarioDecodificado);
-
-    localStorage.setItem("token", data.token); // salva o token
-   // setToken(data.token);
-     navigate("/"); // redireciona para rota protegida (ajuste se necessário)
+      localStorage.setItem("token", data.token); // salva o token
+      setToken(data.token); // Agora você pode armazenar o token no store
+      navigate("/"); // redireciona para a página inicial ou página protegida
     },
     onError: (error) => {
-    alert(error?.response?.data?.message || "Erro ao fazer login");
-    }
+      toast.error(error?.response?.data?.message || "Erro ao fazer login"); // Exibição de erro via toast
+    },
   });
 
 
-    //onSubmit
+//onSubmit
 function response(data) {
    loginUsuario(data);
  }
@@ -56,14 +53,14 @@ function response(data) {
                     <Input {...register ("email")}type="email" name="email" placeholder="Email"/>
                     <Input {...register("senha")}type="password" name="senha" placeholder="Senha" />
                 
-            <Redirecionamento> Não tem login? Faça seu cadastro <BotaoRedirecionar  onClick={() => navigate("/cadastro")}> aqui </BotaoRedirecionar></Redirecionamento>
-            <StyleBotaoLogin type="submit" disabled={isPending}> ENTRAR  </StyleBotaoLogin>
+            <Redirecionamento> {" "} Não tem login? Faça seu cadastro <BotaoRedirecionar  onClick={() => navigate("/cadastro")}>{" "} aqui {" "}</BotaoRedirecionar></Redirecionamento>
+            <StyleBotaoLogin type="submit" disabled={isPending}>  {isPending ? "Entrando..." : "ENTRAR"} </StyleBotaoLogin>
             </Formulario>
             
             <BotaoPadrao
             onClick={() => navigate("/cadastro")}>
             </BotaoPadrao>
         </div>
-    )
+    );
 }
 export default Login; 
