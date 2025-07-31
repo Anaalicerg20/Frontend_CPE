@@ -13,6 +13,7 @@ import Usuarios from "./Pages/Usuarios/Usuarios"
 import PrivateRoute from "./PrivateRoute";
 
 import { AppLayout } from "./layouts";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -34,7 +35,9 @@ const router = createBrowserRouter(
                 } />
                 <Route path="usuarios" element={
                     <PrivateRoute>  
+                    <AdminRoute>
                         <Usuarios />  
+                    </AdminRoute>
                     </PrivateRoute>
                 } />
             </Route>

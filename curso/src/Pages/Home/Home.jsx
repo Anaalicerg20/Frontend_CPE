@@ -1,5 +1,6 @@
 import BotaoPadrao from "../../Componentes/BotaoPadrao/BotaoPadrao";
 import { useNavigate } from "react-router-dom";
+import useAuthStores  from "../../stores/auth";
 
 import {
   HeaderContainer,
@@ -42,6 +43,10 @@ import { useQueryClient } from "@tanstack/react-query";
 const images = [first, second, third, forth, fifth, sixth, seventh, eighth];
 
 function Home() {
+
+  const usuario = useAuthStores((state) => state.usuario);
+  console.log("USUÁRIO:", usuario);
+
   //GET TABELA
   const { data: sessoes, isLoading } = useGetSessoes({});
   const { data: usuarios } = useGetUsuarios({});
@@ -106,6 +111,7 @@ function Home() {
   const [openModal, setOpenModal] = useState(false);
 
   console.log("Sessoes:", sessoes);
+  console.log("AA:", usuario)
   //tela
   return (
     <div>
@@ -113,7 +119,9 @@ function Home() {
         <Header>cpe</Header>
         <NavItem to="/">HOME</NavItem>
         <NavItem to="/perfil">PERFIL</NavItem>
-        <NavItem to="/usuarios">USUÁRIOS</NavItem>
+        {usuario?.admin && (
+          <NavItem to="/usuarios">USUÁRIOS</NavItem>
+        )}
       </HeaderContainer>
 
       <CarrosselContainer>

@@ -4,7 +4,6 @@ import { Header } from './Styles.js';
 import { NavItem } from './Styles.js';
 import { useNavigate } from "react-router-dom";
 import { Container, Dados, Dado, Nome, Valor } from './Styles.js';
-
 import BotaoLogout from '../../Componentes/BotaoLogout.jsx'
 import useAuthStores from "../../stores/auth.js"
 
@@ -12,7 +11,6 @@ import useAuthStores from "../../stores/auth.js"
 function Perfil() {
 
  const usuario = useAuthStores((state) => state.usuario); 
-  console.log(usuario)
   return (
     <>
     <HeaderContainer>

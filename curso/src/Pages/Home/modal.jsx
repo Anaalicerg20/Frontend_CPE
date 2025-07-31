@@ -12,6 +12,9 @@ import { Input } from "./Styles";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
+import useAuthStores  from "../../stores/auth";
+
+
 function Modal({ isOpen, children, setOpenModal, usuarios = [] }) {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -41,7 +44,7 @@ function Modal({ isOpen, children, setOpenModal, usuarios = [] }) {
     },
   });
 
-  const token = localStorage.getItem("token");
+  const token = useAuthStores((state) => state.token);
 
   //onSubmit 
   const onSubmit = (data) => {

@@ -9,7 +9,7 @@ const useAuthStores = create(
             token: null,
             usuario: null,
             setToken:(token) => {
-                const usuario = jwtDecode(token);
+                const { usuario } = jwtDecode(token);
 
                 set({ token, usuario });
             },

@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
+import useAuthStores  from "../stores/auth";
 
 function BotaoLogout() {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("token"); // Remove o token JWT
-    // Limpar outros dados se necessário, como:
-    // localStorage.removeItem("usuario");
+  const  clearAuth = useAuthStores((state) => state.clearAuth);
 
+  const handleLogout = () => {
+    clearAuth();
     navigate("/login"); // Redireciona para a página de login
   };
 

@@ -28,7 +28,6 @@ function Login() {
 
   const { mutate: loginUsuario, isPending } = useLoginUsuario({
     onSuccess: (data) => {
-      localStorage.setItem("token", data.token); // salva o token
       setToken(data.token); // Agora você pode armazenar o token no store
       navigate("/"); // redireciona para a página inicial ou página protegida
     },
